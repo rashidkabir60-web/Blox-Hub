@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BloxFruit Hub — The Ultimate Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deepest:#050810;--bg-dark:#0a0f1e;--bg-card:#0d1427;--bg-card2:#111830;--red:#e8192c;--red-glow:#ff1f35;--red-dim:#8b0f1a;--blue:#1565e8;--blue-bright:#2979ff;--blue-glow:#4d9fff;--blue-dim:#0a2a6e;--accent:#00cfff;--text-primary:#e8eaf6;--text-secondary:#7986a8;--text-dim:#3d4a6b;--border:rgba(21,101,232,0.25);--border-red:rgba(232,25,44,0.3);--glow-blue:0 0 20px rgba(77,159,255,0.4);--glow-red:0 0 20px rgba(255,31,53,0.4)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg-deepest);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(21,101,232,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(21,101,232,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);pointer-events:none;z-index:0}
+nav{position:sticky;top:0;z-index:100;background:rgba(5,8,16,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:2px;display:flex;align-items:center;gap:0.5rem}
+.nav-logo .l1{color:var(--blue-bright)}.nav-logo .l2{color:var(--red)}
+.nav-logo::before{content:'⚔';font-size:1.4rem;filter:drop-shadow(0 0 8px var(--red));animation:pulse-icon 2s ease-in-out infinite}
+@keyframes pulse-icon{0%,100%{filter:drop-shadow(0 0 8px var(--red))}50%{filter:drop-shadow(0 0 16px var(--red-glow)) brightness(1.3)}}
+.nav-links{display:flex;gap:0.25rem;list-style:none}
+.nav-links a{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--text-secondary);padding:0.4rem 1rem;border-radius:4px;transition:all 0.2s;border:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--blue-glow);border-color:var(--border);background:rgba(21,101,232,0.08);text-shadow:0 0 12px var(--blue-glow)}
+.nav-badge{font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:2px;color:var(--red);border:1px solid var(--red-dim);padding:0.2rem 0.7rem;border-radius:3px;background:rgba(232,25,44,0.08);text-transform:uppercase;display:flex;align-items:center;gap:0.4rem}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#2dd75e;box-shadow:0 0 8px #2dd75e;display:inline-block;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero{position:relative;z-index:1;min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.25;animation:orb-drift 8s ease-in-out infinite alternate}
+.hero-orb-1{width:500px;height:500px;background:var(--blue);top:-100px;left:-100px}
+.hero-orb-2{width:400px;height:400px;background:var(--red);bottom:-100px;right:-100px;animation-direction:alternate-reverse}
+.hero-orb-3{width:300px;height:300px;background:var(--accent);top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.08;animation-duration:12s}
+@keyframes orb-drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,30px) scale(1.1)}}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-eyebrow{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:0.75rem}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:40px;height:1px;background:var(--accent);opacity:0.5}
+.hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:1.05;letter-spacing:-1px;margin-bottom:1.5rem}
+.t-blue{color:var(--blue-bright);text-shadow:0 0 40px rgba(41,121,255,0.6)}
+.t-red{color:var(--red);text-shadow:0 0 40px rgba(232,25,44,0.6)}
+.hero-sub{font-size:1.05rem;color:var(--text-secondary);line-height:1.7;max-width:560px;margin:0 auto 2.5rem;font-weight:300}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:0.75rem 2rem;border-radius:4px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-bright) 100%);color:#fff;border:none;cursor:pointer;transition:all 0.25s;box-shadow:0 4px 20px rgba(21,101,232,0.4);display:inline-flex;align-items:center;gap:0.5rem}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(41,121,255,0.6)}
+.btn-secondary{font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:0.75rem 2rem;border-radius:4px;background:transparent;color:var(--red);border:1px solid var(--red-dim);cursor:pointer;transition:all 0.25s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-secondary:hover{background:rgba(232,25,44,0.1);border-color:var(--red);box-shadow:var(--glow-red)}
+.stats-bar{position:relative;z-index:1;background:var(--bg-card);border-top:1px solid var(--border-red);border-bottom:1px solid var(--border);padding:1.25rem 2rem;display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+.stat-item{text-align:center;display:flex;align-items:center;gap:0.75rem}
+.stat-icon{font-size:1.5rem}
+.stat-num{font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:900;color:var(--blue-bright);text-shadow:var(--glow-blue)}
+.stat-label{font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-secondary);margin-top:-2px}
+.tabs-section{position:relative;z-index:1;max-width:1400px;margin:3rem auto;padding:0 2rem}
+.section-label{font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem}
+.section-label::before{content:'//';color:var(--blue-glow)}
+.section-title{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:700;color:var(--text-primary);letter-spacing:1px;margin-bottom:2rem}
+.tab-nav{display:flex;gap:0.25rem;border-bottom:1px solid var(--border);margin-bottom:2rem;overflow-x:auto;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--text-secondary);padding:0.75rem 1.5rem;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;display:flex;align-items:center;gap:0.5rem;margin-bottom:-1px}
+.tab-btn:hover{color:var(--text-primary)}
+.tab-btn.active{color:var(--blue-bright);border-bottom-color:var(--blue-bright);text-shadow:0 0 12px rgba(41,121,255,0.5)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.upload-zone{border:2px dashed var(--border);border-radius:8px;padding:3rem;text-align:center;background:var(--bg-card);cursor:pointer;transition:all 0.25s;margin-bottom:2rem;position:relative;overflow:hidden}
+.upload-zone:hover{border-color:var(--blue-bright)}
+.upload-icon{font-size:3rem;margin-bottom:1rem}
+.upload-title{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;letter-spacing:1px}
+.upload-sub{font-size:0.85rem;color:var(--text-secondary)}
+.upload-types{display:flex;gap:0.5rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap}
+.upload-type-tag{font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:1px;padding:0.3rem 0.75rem;border-radius:3px;text-transform:uppercase}
+.tag-video{background:rgba(232,25,44,0.15);color:var(--red);border:1px solid var(--red-dim)}
+.tag-image{background:rgba(21,101,232,0.15);color:var(--blue-glow);border:1px solid var(--blue-dim)}
+.tag-text{background:rgba(0,207,255,0.1);color:var(--accent);border:1px solid rgba(0,207,255,0.2)}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-bottom:2rem}
+.content-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all 0.25s;position:relative;cursor:pointer}
+.content-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--red));transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+.content-card:hover{border-color:rgba(41,121,255,0.4);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.4),var(--glow-blue)}
+.content-card:hover::before{transform:scaleX(1)}
+.card-thumb{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
+.card-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg-card) 0%,transparent 60%)}
+.card-type-badge{position:absolute;top:10px;right:10px;font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:3px;z-index:2}
+.badge-video{background:var(--red);color:#fff}.badge-image{background:var(--blue);color:#fff}.badge-guide{background:rgba(0,207,255,0.2);color:var(--accent);border:1px solid rgba(0,207,255,0.3)}
+.card-body{padding:1.25rem}
+.card-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.4rem;letter-spacing:0.5px}
+.card-meta{font-size:0.78rem;color:var(--text-secondary);display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem}
+.card-excerpt{font-size:0.85rem;color:var(--text-secondary);line-height:1.6}
+.card-tags{display:flex;gap:0.4rem;margin-top:1rem;flex-wrap:wrap}
+.card-tag{font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:2px;background:rgba(21,101,232,0.12);color:var(--text-secondary);border:1px solid var(--border)}
+.tier-container{display:flex;flex-direction:column;gap:0.75rem}
+.tier-row{display:flex;gap:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:var(--bg-card);transition:all 0.2s}
+.tier-row:hover{border-color:rgba(41,121,255,0.4)}
+.tier-label{width:60px;min-width:60px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1.4rem;font-weight:900;flex-shrink:0}
+.tier-s{background:linear-gradient(135deg,#e8192c,#ff5e6d);color:#fff;text-shadow:0 0 10px rgba(255,255,255,0.5)}
+.tier-a{background:linear-gradient(135deg,#e87519,#ffaa42);color:#fff}
+.tier-b{background:linear-gradient(135deg,#1565e8,#2979ff);color:#fff}
+.tier-c{background:linear-gradient(135deg,#1e8e3e,#2dd75e);color:#fff}
+.tier-d{background:linear-gradient(135deg,#5c5c5c,#888);color:#fff}
+.tier-items{display:flex;flex-wrap:wrap;gap:0.5rem;padding:0.75rem 1rem;flex:1;align-items:center}
+.tier-item{background:var(--bg-card2);border:1px solid var(--border);border-radius:5px;padding:0.4rem 0.8rem;font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:600;color:var(--text-primary);display:flex;align-items:center;gap:0.4rem;cursor:default;transition:all 0.2s}
+.tier-item:hover{border-color:var(--blue-bright);color:var(--blue-glow)}
+.search-bar{display:flex;align-items:center;gap:0.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.6rem 1rem;margin-bottom:2rem;transition:border-color 0.2s}
+.search-bar:focus-within{border-color:var(--blue-bright)}
+.search-bar input{flex:1;background:none;border:none;color:var(--text-primary);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none}
+.search-bar input::placeholder{color:var(--text-dim)}
+.filter-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.filter-tag{font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:0.35rem 0.85rem;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);cursor:pointer;transition:all 0.2s}
+.filter-tag:hover,.filter-tag.active{background:rgba(21,101,232,0.15);border-color:var(--blue-bright);color:var(--blue-glow)}
+.combo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.25rem;transition:all 0.25s;position:relative;overflow:hidden}
+.combo-card::after{content:'';position:absolute;top:0;bottom:0;left:0;width:3px;background:linear-gradient(to bottom,var(--blue),var(--red))}
+.combo-card:hover{border-color:rgba(41,121,255,0.4);transform:translateX(4px)}
+.combo-title{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.difficulty-badge{font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:3px}
+.diff-easy{background:rgba(45,215,94,0.15);color:#2dd75e;border:1px solid rgba(45,215,94,0.2)}
+.diff-medium{background:rgba(232,117,25,0.15);color:#ffaa42;border:1px solid rgba(232,117,25,0.2)}
+.diff-hard{background:rgba(232,25,44,0.15);color:var(--red);border:1px solid var(--red-dim)}
+.combo-steps{display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;margin-bottom:1rem}
+.combo-step{background:var(--bg-card2);border:1px solid var(--border);border-radius:4px;padding:0.3rem 0.65rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:600;color:var(--text-primary);white-space:nowrap}
+.combo-arrow{color:var(--blue-bright);font-weight:700}
+.combo-info{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
+.comment-section{margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem}
+.comment-count{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem}
+.comment-count span{font-family:'Orbitron',sans-serif;color:var(--blue-bright);font-size:1.1rem;margin-right:0.4rem}
+.comment-form{display:flex;gap:0.75rem;margin-bottom:2rem}
+.comment-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;font-family:'Orbitron',sans-serif;color:#fff}
+.comment-input-wrap{flex:1}
+.comment-input{width:100%;background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;color:var(--text-primary);font-family:'Inter',sans-serif;font-size:0.9rem;resize:vertical;min-height:80px;transition:border-color 0.2s;outline:none}
+.comment-input::placeholder{color:var(--text-dim)}
+.comment-input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 2px rgba(41,121,255,0.15)}
+.comment-submit{margin-top:0.5rem;display:flex;justify-content:flex-end}
+.btn-submit{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.5rem 1.5rem;border-radius:4px;background:linear-gradient(135deg,var(--blue),var(--blue-bright));color:#fff;border:none;cursor:pointer;transition:all 0.2s}
+.btn-submit:hover{box-shadow:var(--glow-blue);transform:translateY(-1px)}
+.comments-list{display:flex;flex-direction:column;gap:1.25rem}
+.comment-item{display:flex;gap:0.75rem;padding:1rem;background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;transition:all 0.2s}
+.comment-item:hover{border-color:rgba(41,121,255,0.3)}
+.comment-meta{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.4rem}
+.comment-user{font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:700;color:var(--blue-glow);letter-spacing:0.5px}
+.comment-time{font-size:0.75rem;color:var(--text-dim)}
+.comment-text{font-size:0.875rem;color:var(--text-secondary);line-height:1.6}
+.comment-actions{display:flex;gap:1rem;margin-top:0.5rem}
+.comment-action-btn{font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:none;border:none;color:var(--text-dim);cursor:pointer;transition:color 0.2s;display:flex;align-items:center;gap:0.3rem;padding:0}
+.comment-action-btn:hover{color:var(--blue-glow)}
+.comment-action-btn.liked{color:var(--red)}
+.modal-overlay{position:fixed;inset:0;background:rgba(5,8,16,0.9);backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;animation:fadeIn 0.2s}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:2rem;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.8),var(--glow-blue)}
+.modal-title{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.5rem;color:var(--text-primary)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-secondary);font-size:1.5rem;cursor:pointer;transition:color 0.2s;line-height:1}
+.modal-close:hover{color:var(--red)}
+.modal-tabs{display:flex;gap:0.5rem;margin:1.5rem 0 1rem;border-bottom:1px solid var(--border)}
+.modal-tab-btn{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:none;border:none;color:var(--text-secondary);padding:0.5rem 1rem;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s}
+.modal-tab-btn.active{color:var(--blue-bright);border-bottom-color:var(--blue-bright)}
+.modal-input{width:100%;background:var(--bg-dark);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;color:var(--text-primary);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;margin-bottom:1rem;transition:border-color 0.2s}
+.modal-input:focus{border-color:var(--blue-bright)}
+.modal-input::placeholder{color:var(--text-dim)}
+textarea.modal-input{min-height:120px;resize:vertical}
+.modal-label{font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:0.4rem;display:block}
+.modal-dropzone{border:2px dashed var(--border);border-radius:6px;padding:2rem;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:1rem}
+.modal-dropzone:hover{border-color:var(--blue-bright);background:rgba(21,101,232,0.04)}
+.modal-dropzone-icon{font-size:2.5rem;margin-bottom:0.5rem}
+.modal-dropzone-text{font-size:0.85rem;color:var(--text-secondary)}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem;text-align:center;margin-top:4rem}
+.footer-logo{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:900;letter-spacing:2px;margin-bottom:0.5rem}
+.footer-logo .fl1{color:var(--blue-bright)}.footer-logo .fl2{color:var(--red)}
+footer p{font-size:0.8rem;color:var(--text-dim)}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg-deepest)}
+::-webkit-scrollbar-thumb{background:var(--blue-dim);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--blue)}
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg-card);border:1px solid var(--blue-bright);border-radius:6px;padding:0.75rem 1.25rem;font-family:'Rajdhani',sans-serif;font-size:0.9rem;font-weight:600;letter-spacing:0.5px;color:var(--text-primary);z-index:9999;box-shadow:var(--glow-blue);transform:translateX(120%);transition:transform 0.3s ease;display:flex;align-items:center;gap:0.5rem}
+.toast.show{transform:translateX(0)}
+.toast.error{border-color:var(--red);box-shadow:var(--glow-red)}
+@media(max-width:768px){nav{padding:0 1rem}.nav-links{display:none}.stats-bar{gap:2rem}.tabs-section{padding:0 1rem}.tier-label{width:45px;min-width:45px;font-size:1.1rem}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo"><span class="l1">BLOX</span><span class="l2">FRUIT</span>&nbsp;HUB</div>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showTab('home',this);return false">Home</a></li>
+    <li><a href="#" onclick="showTab('combos',this);return false">Combos</a></li>
+    <li><a href="#" onclick="showTab('scaling',this);return false">Scaling</a></li>
+    <li><a href="#" onclick="showTab('media',this);return false">Media</a></li>
+    <li><a href="#" onclick="showTab('guides',this);return false">Guides</a></li>
+  </ul>
+  <div class="nav-badge"><span class="online-dot"></span>Live</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Roblox &bull; Blox Fruit &bull; Community Hub</div>
+    <h1 class="hero-title"><span class="t-blue">BLOX</span><span class="t-red">FRUIT</span><br>HUB</h1>
+    <p class="hero-sub">The ultimate destination for Blox Fruit content — combo guides, fruit scaling, tips &amp; tricks, and a community of experienced players helping you level up.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="openUploadModal()">&#11014; Upload Content</button>
+      <button class="btn-secondary" onclick="switchTab('combos')">&#9876; View Combos</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-icon">🎮</div><div><div class="stat-num">247</div><div class="stat-label">Guides</div></div></div>
+  <div class="stat-item"><div class="stat-icon">⚔️</div><div><div class="stat-num">89</div><div class="stat-label">Combos</div></div></div>
+  <div class="stat-item"><div class="stat-icon">🍎</div><div><div class="stat-num">42</div><div class="stat-label">Fruits Ranked</div></div></div>
+  <div class="stat-item"><div class="stat-icon">💬</div><div><div class="stat-num">1.2K</div><div class="stat-label">Comments</div></div></div>
+</div>
+
+<main class="tabs-section">
+  <div class="tab-nav">
+    <button class="tab-btn active" id="tab-home" onclick="switchTab('home')">🏠 Home</button>
+    <button class="tab-btn" id="tab-combos" onclick="switchTab('combos')">⚔️ Combo Guides</button>
+    <button class="tab-btn" id="tab-scaling" onclick="switchTab('scaling')">🍎 Fruit Scaling</button>
+    <button class="tab-btn" id="tab-media" onclick="switchTab('media')">📸 Media</button>
+    <button class="tab-btn" id="tab-guides" onclick="switchTab('guides')">📖 Written Guides</button>
+  </div>
+
+  <div class="tab-panel active" id="panel-home">
+    <div class="section-label">Latest Content</div>
+    <h2 class="section-title">RECENT UPLOADS</h2>
+    <div class="content-grid" id="home-grid"></div>
+    <div class="comment-section">
+      <div class="comment-count"><span id="home-cc">5</span> Comments</div>
+      <div id="home-comments"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-combos">
+    <div class="section-label">PVP Meta</div>
+    <h2 class="section-title">COMBO GUIDES</h2>
+    <div class="search-bar">🔍 <input type="text" placeholder="Search combos... (e.g. Leopard, Buddha, Sword)" oninput="filterCombos(this.value)"></div>
+    <div class="filter-tags">
+      <span class="filter-tag active" onclick="setFilter('all',this)">All</span>
+      <span class="filter-tag" onclick="setFilter('mythical',this)">Mythical</span>
+      <span class="filter-tag" onclick="setFilter('legendary',this)">Legendary</span>
+      <span class="filter-tag" onclick="setFilter('sword',this)">Sword</span>
+      <span class="filter-tag" onclick="setFilter('physical',this)">Physical</span>
+    </div>
+    <div id="combos-list"></div>
+    <div class="comment-section">
+      <div class="comment-count"><span id="combos-cc">8</span> Comments</div>
+      <div id="combos-comments"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-scaling">
+    <div class="section-label">Power Rankings</div>
+    <h2 class="section-title">FRUIT SCALING TIER LIST</h2>
+    <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.6">All Devil Fruits ranked based on PVP viability, damage output, awakening potential, mobility, and overall meta performance. Updated for current patch.</p>
+    <div class="tier-container" id="tier-list"></div>
+    <div class="comment-section">
+      <div class="comment-count"><span id="scaling-cc">12</span> Comments</div>
+      <div id="scaling-comments"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-media">
+    <div class="section-label">Videos &amp; Images</div>
+    <h2 class="section-title">MEDIA GALLERY</h2>
+    <div class="upload-zone" onclick="openUploadModal()">
+      <div class="upload-icon">📁</div>
+      <div class="upload-title">Drop Files Here or Click to Upload</div>
+      <div class="upload-sub">Share your gameplay clips, screenshots, and in-game moments</div>
+      <div class="upload-types">
+        <span class="upload-type-tag tag-video">🎬 MP4 / WebM</span>
+        <span class="upload-type-tag tag-image">🖼 PNG / JPG</span>
+        <span class="upload-type-tag tag-text">📄 Written</span>
+      </div>
+    </div>
+    <div class="content-grid" id="media-grid"></div>
+    <div class="comment-section">
+      <div class="comment-count"><span id="media-cc">6</span> Comments</div>
+      <div id="media-comments"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-guides">
+    <div class="section-label">Written Content</div>
+    <h2 class="section-title">TIPS &amp; TRICKS GUIDES</h2>
+    <div class="upload-zone" onclick="openUploadModal('guide')">
+      <div class="upload-icon">✍️</div>
+      <div class="upload-title">Write or Upload a Guide</div>
+      <div class="upload-sub">Share your knowledge and help the community grow</div>
+    </div>
+    <div class="content-grid" id="guides-grid"></div>
+    <div class="comment-section">
+      <div class="comment-count"><span id="guides-cc">4</span> Comments</div>
+      <div id="guides-comments"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo"><span class="fl1">BLOX</span><span class="fl2">FRUIT</span> HUB</div>
+  <p>A fan-made community platform for Blox Fruit players. Not affiliated with Roblox Corporation.</p>
+</footer>
+
+<div class="modal-overlay" id="upload-modal">
+  <div class="modal">
+    <div class="modal-title">&#11014; Upload Content</div>
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <div class="modal-tabs">
+      <button class="modal-tab-btn active" onclick="switchModalTab('video',this)">🎬 Video</button>
+      <button class="modal-tab-btn" onclick="switchModalTab('image',this)">🖼 Image</button>
+      <button class="modal-tab-btn" onclick="switchModalTab('guide',this)">📖 Guide</button>
+      <button class="modal-tab-btn" onclick="switchModalTab('combo',this)">⚔️ Combo</button>
+    </div>
+    <div id="modal-video-form">
+      <label class="modal-label">Title</label>
+      <input type="text" class="modal-input" placeholder="e.g. Leopard Awakening Full Combo Guide">
+      <label class="modal-label">Video File or URL</label>
+      <div class="modal-dropzone" onclick="showToast('File picker ready','info')">
+        <div class="modal-dropzone-icon">🎬</div>
+        <div class="modal-dropzone-text">Drag &amp; drop video or click to browse<br><small style="color:var(--text-dim)">MP4, WebM, MOV up to 500MB</small></div>
+      </div>
+      <label class="modal-label">Description</label>
+      <textarea class="modal-input" placeholder="Describe your video..."></textarea>
+      <label class="modal-label">Tags</label>
+      <input type="text" class="modal-input" placeholder="leopard, pvp, combo, awakening">
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:0.5rem">
+        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="submitContent()">🚀 Publish</button>
+      </div>
+    </div>
+    <div id="modal-image-form" style="display:none">
+      <label class="modal-label">Title</label>
+      <input type="text" class="modal-input" placeholder="e.g. My maxed Leopard stats">
+      <label class="modal-label">Image</label>
+      <div class="modal-dropzone">
+        <div class="modal-dropzone-icon">🖼</div>
+        <div class="modal-dropzone-text">Drag &amp; drop or click to browse<br><small style="color:var(--text-dim)">PNG, JPG, GIF, WebP</small></div>
+        <input type="file" accept="image/*" style="position:absolute;opacity:0;inset:0;cursor:pointer">
+      </div>
+      <label class="modal-label">Caption</label>
+      <textarea class="modal-input" placeholder="Add a caption..."></textarea>
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:0.5rem">
+        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="submitContent()">🚀 Publish</button>
+      </div>
+    </div>
+    <div id="modal-guide-form" style="display:none">
+      <label class="modal-label">Guide Title</label>
+      <input type="text" class="modal-input" placeholder="e.g. Beginner's Guide to Fruit Awakening">
+      <label class="modal-label">Content</label>
+      <textarea class="modal-input" style="min-height:200px" placeholder="Write your guide here..."></textarea>
+      <label class="modal-label">Difficulty</label>
+      <select class="modal-input"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select>
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:0.5rem">
+        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="submitContent()">🚀 Publish</button>
+      </div>
+    </div>
+    <div id="modal-combo-form" style="display:none">
+      <label class="modal-label">Combo Name</label>
+      <input type="text" class="modal-input" placeholder="e.g. Leopard Death Loop">
+      <label class="modal-label">Fruit / Style</label>
+      <input type="text" class="modal-input" placeholder="e.g. Leopard + Dark Blade">
+      <label class="modal-label">Combo Steps (separate with arrows)</label>
+      <input type="text" class="modal-input" placeholder="e.g. Skill 1 → Skill 2 → Z → Finisher">
+      <label class="modal-label">Difficulty</label>
+      <select class="modal-input"><option>Easy</option><option>Medium</option><option>Hard</option></select>
+      <label class="modal-label">Notes / Tips</label>
+      <textarea class="modal-input" placeholder="Timing tips, best situations..."></textarea>
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:0.5rem">
+        <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="submitContent()">🚀 Publish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">&#x2705; <span id="toast-msg">Done!</span></div>
+
+<script>
+const cards=[
+  {type:'video',icon:'🎬',title:'Leopard Awakening Full Combo',meta:'2h ago · 1.2K views',excerpt:'Complete guide to mastering Leopard awakening combos in PVP. Covers timing, positioning, and counter-play.',tags:['Leopard','PVP','Mythical'],color:'#1565e8'},
+  {type:'image',icon:'🖼',title:'Dragon Fruit Max Stats Screenshot',meta:'5h ago · 342 views',excerpt:'Full showcase of maxed Dragon fruit stats with optimal build configuration for sea beast farming.',tags:['Dragon','Stats'],color:'#e8192c'},
+  {type:'guide',icon:'📖',title:'Beginner Guide: How to Get Your First Fruit',meta:'1d ago · 3.1K views',excerpt:'Step-by-step walkthrough for new players on how to find, eat, and use your first Devil Fruit effectively.',tags:['Beginner','Fruits','Tutorial'],color:'#00cfff'},
+  {type:'video',icon:'🎬',title:'Buddha Raid Boss Strategy',meta:'2d ago · 892 views',excerpt:'How to solo raid bosses using Buddha transformation. Best accessories and stat distribution included.',tags:['Buddha','Raids','Strategy'],color:'#1565e8'},
+  {type:'guide',icon:'📖',title:'Max Level Grinding Spots Guide',meta:'3d ago · 5.7K views',excerpt:'Optimal grinding routes for max level players across all three seas with XP efficiency breakdowns.',tags:['Grinding','XP','Max Level'],color:'#00cfff'},
+  {type:'image',icon:'🖼',title:'Top 5 PVP Setups This Patch',meta:'4d ago · 1.8K views',excerpt:'Infographic showing the five strongest PVP loadouts in the current meta with damage numbers.',tags:['PVP','Meta','Build'],color:'#e8192c'},
+];
+const combos=[
+  {name:'Leopard God Combo',fruit:'Leopard (Awakened)',difficulty:'hard',steps:['F Skill','Leopard Dash','C Skill','X Skill','Soru','Dragon Claw'],info:'Most feared combo in current meta. Deals 85%+ HP. Requires precise timing on the Soru step.',cat:'mythical'},
+  {name:'Dragon Full Death Loop',fruit:'Dragon (Awakened)',difficulty:'hard',steps:['Roar','Z Skill','X Skill','C Skill','Obs Off','Dragon Talon'],info:'Infinite looping combo. Works best against enemies without Observation Haki.',cat:'mythical'},
+  {name:'Buddha Pressure Combo',fruit:'Buddha (Awakened)',difficulty:'medium',steps:['Transform','Z Hit','Claw Shockwave','Ken Haki','X Hit','Ground Smash'],info:'Tanky brawler combo. Buddha reduces incoming damage while pressuring opponents.',cat:'legendary'},
+  {name:'Dough Stun Lock',fruit:'Dough (Awakened)',difficulty:'hard',steps:['Donut Ring','Spatial Migration','X Skill','Slap','C Skill','Finisher'],info:'Keeps opponents stunned for extended duration. One of the highest damage combos if landed correctly.',cat:'mythical'},
+  {name:'Dark Blade Sword User',fruit:'None + Dark Blade',difficulty:'easy',steps:['Shockwave Z','Triple Slash','Rush X','Impale'],info:'Pure sword user combo. Great for beginners. Dark Blade is obtainable early and scales well.',cat:'sword'},
+  {name:'Magma Awakened Burst',fruit:'Magma (Awakened)',difficulty:'medium',steps:['Volcano Fist','Magma Floor','X Skill','Eruption'],info:'Excellent for zoning and environment control. The Magma Floor prevents opponent movement effectively.',cat:'legendary'},
+  {name:'True Triple Dark Step',fruit:'None + Dark Step',difficulty:'easy',steps:['Kick Combo Z','Dark Barrage X','Triple Kick C','Obs Activation'],info:'Classic physical fighting style. No fruit needed. Reliable, fast, and great for competitive play.',cat:'physical'},
+];
+const tiers=[
+  {t:'s',label:'S',items:[{i:'🐆',n:'Leopard'},{i:'🐉',n:'Dragon'},{i:'🕊',n:'Dough'},{i:'☠️',n:'Venom'}]},
+  {t:'a',label:'A',items:[{i:'🌋',n:'Magma'},{i:'🌸',n:'Sakura'},{i:'⚡',n:'Lightning'},{i:'🔮',n:'Control'},{i:'🌊',n:'Quake'}]},
+  {t:'b',label:'B',items:[{i:'☯️',n:'Buddha'},{i:'❄️',n:'Ice'},{i:'🔥',n:'Flame'},{i:'💨',n:'Smoke'},{i:'💎',n:'Diamond'},{i:'🌀',n:'Gravity'}]},
+  {t:'c',label:'C',items:[{i:'🌑',n:'Dark'},{i:'🍄',n:'Rumble'},{i:'⚙️',n:'Barrier'},{i:'💧',n:'Sand'},{i:'🪨',n:'Spike'}]},
+  {t:'d',label:'D',items:[{i:'🎈',n:'Spin'},{i:'💣',n:'Bomb'},{i:'🐚',n:'Chop'},{i:'🪱',n:'Spring'}]},
+];
+const comments=[
+  {user:'ProGamerX',time:'2h ago',text:'Bro the Leopard combo is INSANE right now. No cap this site helped me go from trash to top 10 on the server.',likes:47},
+  {user:'FruitHunter99',time:'5h ago',text:'The fruit scaling tier list is super accurate. Dragon has been S tier since the last patch dropped.',likes:31},
+  {user:'NoobSlayer22',time:'8h ago',text:'Finally a proper guide that explains the awakening system. I spent 3 days trying to figure it out on my own lol',likes:28},
+  {user:'SeaKing_Blox',time:'1d ago',text:'Can you do a guide on how to counter Buddha users? They are everywhere in my server and I cannot touch them',likes:19},
+  {user:'BloxLegend',time:'2d ago',text:'These combos actually work in practice unlike some other guides. The timing tips make a huge difference.',likes:52},
+  {user:'FruitMaster77',time:'3d ago',text:'Just got Dough fruit from the dealer and this guide helped me maximize it. W site ngl.',likes:35},
+  {user:'PVPking',time:'1d ago',text:'Dark blade sword combo is underrated. Been using it since day 1 and it still catches everyone off guard.',likes:22},
+];
+
+function makeCard(c){
+  return `<div class="content-card"><div class="card-thumb" style="background:linear-gradient(135deg,var(--bg-card2),${c.color}33)"><span style="font-size:3.5rem;position:relative;z-index:1">${c.icon}</span><span class="card-type-badge badge-${c.type}">${c.type.toUpperCase()}</span></div><div class="card-body"><div class="card-title">${c.title}</div><div class="card-meta"><span>👁 ${c.meta}</span></div><div class="card-excerpt">${c.excerpt}</div><div class="card-tags">${c.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div></div></div>`;
+}
+
+function makeComment(c){
+  return `<div class="comment-item"><div class="comment-avatar" style="font-size:0.85rem">${c.user[0]}</div><div style="flex:1"><div class="comment-meta"><span class="comment-user">${c.user}</span><span class="comment-time">${c.time}</span></div><div class="comment-text">${c.text}</div><div class="comment-actions"><button class="comment-action-btn" onclick="toggleLike(this,${c.likes})">&#10084; ${c.likes}</button><button class="comment-action-btn" onclick="showToast('Reply feature coming soon!','info')">&#x1F4AC; Reply</button></div></div></div>`;
+}
+
+function makeCommentSection(containerId,countId,slice){
+  const el=document.getElementById(containerId);
+  if(!el)return;
+  el.innerHTML=`<div class="comment-form"><div class="comment-avatar">U</div><div class="comment-input-wrap"><textarea class="comment-input" placeholder="Share your thoughts..." id="inp-${containerId}"></textarea><div class="comment-submit"><button class="btn-submit" onclick="postComment('${containerId}','${countId}')">&#x1F4AC; Post Comment</button></div></div></div><div class="comments-list" id="list-${containerId}">${comments.slice(...slice).map(makeComment).join('')}</div>`;
+}
+
+function renderCombos(filter='all',search=''){
+  const list=document.getElementById('combos-list');
+  const f=combos.filter(c=>(filter==='all'||c.cat===filter)&&(search===''||c.name.toLowerCase().includes(search)||c.fruit.toLowerCase().includes(search)));
+  list.innerHTML=f.map(c=>`<div class="combo-card"><div class="combo-title">&#x2694; ${c.name}<span class="difficulty-badge diff-${c.difficulty}">${c.difficulty}</span></div><div style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:0.75rem;font-family:'Rajdhani',sans-serif;letter-spacing:1px;text-transform:uppercase">&#x1F34E; ${c.fruit}</div><div class="combo-steps">${c.steps.map((s,i)=>`<span class="combo-step">${s}</span>${i<c.steps.length-1?'<span class="combo-arrow">&#x2192;</span>':''}`).join('')}</div><div class="combo-info">${c.info}</div></div>`).join('');
+}
+
+function renderTiers(){
+  document.getElementById('tier-list').innerHTML=tiers.map(t=>`<div class="tier-row"><div class="tier-label tier-${t.t}">${t.label}</div><div class="tier-items">${t.items.map(i=>`<div class="tier-item"><span>${i.i}</span>${i.n}</div>`).join('')}</div></div>`).join('');
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('home-grid').innerHTML=cards.map(makeCard).join('');
+  document.getElementById('media-grid').innerHTML=cards.filter(c=>c.type!=='guide').map(makeCard).join('');
+  document.getElementById('guides-grid').innerHTML=cards.filter(c=>c.type==='guide').map(makeCard).join('');
+  renderCombos();
+  renderTiers();
+  makeCommentSection('home-comments','home-cc',[0,3]);
+  makeCommentSection('combos-comments','combos-cc',[2,5]);
+  makeCommentSection('scaling-comments','scaling-cc',[1,4]);
+  makeCommentSection('media-comments','media-cc',[3,6]);
+  makeCommentSection('guides-comments','guides-cc',[4,7]);
+});
+
+let curFilter='all';
+function switchTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+function showTab(id,el){
+  switchTab(id);
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  if(el)el.classList.add('active');
+}
+function filterCombos(v){renderCombos(curFilter,v.toLowerCase());}
+function setFilter(f,el){curFilter=f;document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderCombos(f);}
+function openUploadModal(tab){document.getElementById('upload-modal').classList.add('open');if(tab)switchModalTab(tab,null);}
+function closeModal(){document.getElementById('upload-modal').classList.remove('open');}
+function switchModalTab(tab,btn){['video','image','guide','combo'].forEach(t=>{const e=document.getElementById('modal-'+t+'-form');if(e)e.style.display=t===tab?'block':'none';});document.querySelectorAll('.modal-tab-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
+function submitContent(){closeModal();showToast('Content published successfully!','success');}
+function postComment(cid,ccid){const inp=document.getElementById('inp-'+cid);const t=inp.value.trim();if(!t){showToast('Please write something first!','error');return;}const list=document.getElementById('list-'+cid);list.insertAdjacentHTML('afterbegin',makeComment({user:'You',time:'Just now',text:t,likes:0}));inp.value='';const el=document.getElementById(ccid);if(el)el.textContent=parseInt(el.textContent)+1;showToast('Comment posted!','success');}
+function toggleLike(btn,start){const on=btn.classList.toggle('liked');btn.innerHTML='&#10084; '+(start+(on?1:0));}
+let toastT;
+function showToast(msg,type){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.className='toast show'+(type==='error'?' error':'');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000);}
+document.getElementById('upload-modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
+</body>
+</html>
+
